@@ -1,29 +1,28 @@
 package com.n26.tx.dao;
 
-import java.util.Optional;
-
+import com.n26.tx.model.Amount;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.n26.tx.model.AmountDetails;
+import java.util.Optional;
 
 /**
  * @author SINPANK
  */
 @Repository
-public class TransactionRepository implements CrudRepository<AmountDetails, Long> {
+public class TransactionRepository implements CrudRepository<Amount, Long> {
     @Override
-    public <S extends AmountDetails> S save(S s) {
+    public <S extends Amount> S save(S s) {
         return null;
     }
 
     @Override
-    public <S extends AmountDetails> Iterable<S> saveAll(Iterable<S> iterable) {
+    public <S extends Amount> Iterable<S> saveAll(Iterable<S> iterable) {
         return null;
     }
 
     @Override
-    public Optional<AmountDetails> findById(Long aLong) {
+    public Optional<Amount> findById(Long aLong) {
         return Optional.empty();
     }
 
@@ -33,12 +32,12 @@ public class TransactionRepository implements CrudRepository<AmountDetails, Long
     }
 
     @Override
-    public Iterable<AmountDetails> findAll() {
+    public Iterable<Amount> findAll() {
         return null;
     }
 
     @Override
-    public Iterable<AmountDetails> findAllById(Iterable<Long> iterable) {
+    public Iterable<Amount> findAllById(Iterable<Long> iterable) {
         return null;
     }
 
@@ -53,12 +52,12 @@ public class TransactionRepository implements CrudRepository<AmountDetails, Long
     }
 
     @Override
-    public void delete(AmountDetails amountDetails) {
+    public void delete(Amount amount) {
 
     }
 
     @Override
-    public void deleteAll(Iterable<? extends AmountDetails> iterable) {
+    public void deleteAll(Iterable<? extends Amount> iterable) {
 
     }
 
