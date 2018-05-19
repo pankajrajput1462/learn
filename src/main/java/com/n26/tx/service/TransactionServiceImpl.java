@@ -21,16 +21,16 @@ import static org.springframework.http.HttpStatus.NO_CONTENT;
 public class TransactionServiceImpl implements TransactionService {
 
     @Autowired
-    TransactionRepository repository;
+    TransactionRepository transactionRepository;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<String> initiateTransaction(Amount amount) {
         try {
-            repository.save(amount);
+        	transactionRepository.save(amount);
             return ResponseEntity.accepted().body("Success");
         } catch (Exception e) {
-            log.info("Transaction failed : {}", e.getMessage());
+            System.out.println("Transaction failed : {}"+ e.getMessage());
             return ResponseEntity.status(NO_CONTENT).build();
         }
 
@@ -38,7 +38,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public ResponseEntity<AmountDetails> getTransactionDetails() {
-        final Iterable<Amount> all = repository.findAll();
+        final Iterable<Amount> all = transactionRepository.findAll();
         System.out.println("all = " + all);
         return null;
     }

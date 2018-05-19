@@ -9,60 +9,38 @@ import java.util.Optional;
 /**
  * @author SINPANK
  */
-@Repository
-public class TransactionRepository implements CrudRepository<Amount, Long> {
+public interface TransactionRepository extends CrudRepository<Amount, Long> {
     @Override
-    public <S extends Amount> S save(S s) {
-        return null;
-    }
+    public <S extends Amount> S save(S s);
+    
 
     @Override
-    public <S extends Amount> Iterable<S> saveAll(Iterable<S> iterable) {
-        return null;
-    }
+    public <S extends Amount> Iterable<S> saveAll(Iterable<S> iterable);
 
     @Override
-    public Optional<Amount> findById(Long aLong) {
-        return Optional.empty();
-    }
+    public Optional<Amount> findById(Long aLong);
 
     @Override
-    public boolean existsById(Long aLong) {
-        return false;
-    }
+    public boolean existsById(Long aLong);
 
     @Override
-    public Iterable<Amount> findAll() {
-        return null;
-    }
+    public Iterable<Amount> findAll();
 
     @Override
-    public Iterable<Amount> findAllById(Iterable<Long> iterable) {
-        return null;
-    }
+    public Iterable<Amount> findAllById(Iterable<Long> iterable);
 
     @Override
-    public long count() {
-        return 0;
-    }
+    public long count();
 
     @Override
-    public void deleteById(Long aLong) {
-
-    }
+    public void deleteById(Long aLong);
 
     @Override
-    public void delete(Amount amount) {
-
-    }
+    public void delete(Amount amount);
 
     @Override
-    public void deleteAll(Iterable<? extends Amount> iterable) {
-
-    }
+    public void deleteAll(Iterable<? extends Amount> iterable);
 
     @Override
-    public void deleteAll() {
-
-    }
+    public void deleteAll();
 }

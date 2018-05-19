@@ -1,2 +1,14 @@
-/target/
+/target/**
 *.class
+
+/target/**
+/target/classes/com/n26/tx/endpoint/TransactionDetailsEndpoint.class
+/target/classes/com/n26/tx/model/Amount.class
+/target/classes/com/n26/tx/model/AmountDetails.class
+/target/classes/com/n26/tx/service/TransactionService.class
+/target/classes/com/n26/tx/service/TransactionServiceImpl.class
+/target/classes/com/n26/tx/StatisticsApplication.class
+/target/classes/com/n26/tx/swagger/SwaggerConfiguration.class
+/target/classes/hello/AppRunner.class
+/target/classes/hello/BookingService.class
+/target/classes/schema.sql
