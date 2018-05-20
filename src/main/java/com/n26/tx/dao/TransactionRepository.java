@@ -29,7 +29,7 @@ public interface TransactionRepository extends CrudRepository<Amount, Long> {
     public List<Amount> findAll();
     
     //@Query("select c from Amount c")
-    @Query("SELECT * FROM Amount c where c.transactionDate>(now()-interval '1' minute)")
+    @Query("SELECT c FROM Amount c where c.transactionTime>DATEADD('MINUTE', -1, now())")
 	List<Amount> findAllAmount();
 
 
