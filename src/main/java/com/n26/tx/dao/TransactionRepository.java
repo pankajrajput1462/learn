@@ -1,13 +1,12 @@
 package com.n26.tx.dao;
 
-import com.n26.tx.model.Amount;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-import java.util.stream.Stream;
+import com.n26.tx.model.Amount;
 
 /**
  * @author SINPANK
@@ -27,10 +26,11 @@ public interface TransactionRepository extends CrudRepository<Amount, Long> {
     public boolean existsById(Long aLong);
 
     @Override
-    public Iterable<Amount> findAll();
+    public List<Amount> findAll();
     
-    @Query("select c from Amount c")
-	Stream<Amount> findAllAmount();
+    //@Query("select c from Amount c")
+    @Query("SELECT * FROM Amount c where c.transactionDate>(now()-interval '1' minute)")
+	List<Amount> findAllAmount();
 
 
     @Override

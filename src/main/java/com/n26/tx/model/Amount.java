@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 /**
@@ -24,6 +26,8 @@ public class Amount {
 
 	private double amount;
 	
-	private Long transactionTime;
+	@JsonFormat(shape = JsonFormat.Shape.NUMBER)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date transactionTime;
 
 }
