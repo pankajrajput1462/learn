@@ -1,10 +1,13 @@
 package com.n26.tx.dao;
 
 import com.n26.tx.model.Amount;
+
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * @author SINPANK
@@ -25,6 +28,10 @@ public interface TransactionRepository extends CrudRepository<Amount, Long> {
 
     @Override
     public Iterable<Amount> findAll();
+    
+    @Query("select c from Amount c")
+	Stream<Amount> findAllAmount();
+
 
     @Override
     public Iterable<Amount> findAllById(Iterable<Long> iterable);

@@ -9,6 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.OptionalDouble;
+import java.util.stream.Stream;
+
 import static org.springframework.http.HttpStatus.NO_CONTENT;
 
 /**
@@ -27,19 +30,30 @@ public class TransactionServiceImpl implements TransactionService {
     @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<String> initiateTransaction(Amount amount) {
         try {
-        	transactionRepository.save(amount);
+            transactionRepository.save(amount);
             return ResponseEntity.accepted().body("Success");
         } catch (Exception e) {
-            System.out.println("Transaction failed : {}"+ e.getMessage());
+            System.out.println("Transaction failed : {}" + e.getMessage());
             return ResponseEntity.status(NO_CONTENT).build();
         }
 
     }
 
+    @Transactional
     @Override
     public ResponseEntity<AmountDetails> getTransactionDetails() {
-        final Iterable<Amount> all = transactionRepository.findAll();
-        System.out.println("all = " + all);
-        return null;
+
+        AmountDetails amountDetails = new AmountDetails();
+        Stream<Amount> txAmount = transactionRepository.findAllAmount();
+        final double sum = txAmount.parallel().mapToDouble(Amount::getAmount).sum();
+        final OptionalDouble max = txAmount.parallel().mapToDouble(Amount::getAmount).max();
+        final OptionalDouble min = txAmount.parallel().mapToDouble(Amount::getAmount).min();
+        final OptionalDouble average = txAmount.parallel().mapToDouble(Amount::getAmount).average();
+        max.ifPresent(amountDetails::setMax);
+        min.ifPresent(amountDetails::setMin);
+        average.ifPresent(amountDetails::setAvg);
+        amountDetails.setSum(sum);
+        amountDetails.setCount(txAmount.parallel().count());
+        return ResponseEntity.ok().body(amountDetails);
     }
 }
