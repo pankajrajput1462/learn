@@ -14,13 +14,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AmountDetails {
 
-    private String sum;
+    private double sum;
 
-    private String avg;
+    private double avg;
 
-    private String max;
+    private double max;
 
-    private String min;
+    private double min;
 
-    private String count;
+    private long count;
 }
