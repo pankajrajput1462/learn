@@ -38,8 +38,7 @@ public class TransactionDetailsEndpoint {
     @ApiOperation(value = "Initiate transaction")
     @PostMapping(path = "/transactions", consumes = APPLICATION_JSON_UTF8_VALUE, produces = APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<String> transactionInitiated(@RequestBody Amount amount) {
-        System.out.println("Inside Transaction initiated");
-
+        
         return transactionService.initiateTransaction(amount);
     }
 

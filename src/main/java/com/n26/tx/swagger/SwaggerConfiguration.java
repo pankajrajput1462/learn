@@ -29,7 +29,7 @@ public class SwaggerConfiguration {
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.regex("/.*")).build().apiInfo(apiInfo())
-                .tags(new Tag("Transaction Statistics", "Transaction Statistics management"));
+                .tags(new Tag("Transaction Statistics", "Statistics management"));
     }
 
     private ApiInfo apiInfo() {
